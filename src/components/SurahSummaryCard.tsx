@@ -2,7 +2,6 @@ import { Chapter } from "@/@types/components";
 import React from "react";
 
 interface SurahCard {
-  key: number;
   chapter: Chapter;
 }
 
@@ -10,14 +9,16 @@ function SurahSummaryCard({ chapter }: SurahCard) {
   return (
     <div
       key={chapter.id}
-      className="bg-white border rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col justify-between"
+      className="bg-white border rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col justify-between cursor-pointer"
     >
       <div>
         <h2 className="text-xl font-semibold">{chapter.name}</h2>
-        <p className="text-gray-500 text-sm">{chapter.name_arabic}</p>
-        <p className="text-gray-700 mt-2">
-          {chapter.translated_name.name} —{" "}
+        <p className="text-emerald-500 text-lg">{chapter.name_arabic}</p>
+        <p className="text-gray-900 text-sm">
           {chapter.revelation_place.toUpperCase()}
+        </p>
+        <p className="text-gray-700 mt-2">
+          {chapter.name_simple} <span>({chapter.translated_name.name})</span>
         </p>
       </div>
 

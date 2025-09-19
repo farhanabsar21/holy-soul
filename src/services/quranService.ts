@@ -20,7 +20,10 @@ export function createQuranService(
       const res = await axios.get(`${apiBaseUrl}/chapters`, {
         headers: { "x-auth-token": token, "x-client-id": clientId },
       });
-      logger.info("Quran data", res.data);
+      logger.info(
+        "Quran verses received",
+        `total: ${res.data.chapters.length}`
+      );
       return res.data;
     },
   };
