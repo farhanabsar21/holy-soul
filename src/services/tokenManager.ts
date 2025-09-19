@@ -1,3 +1,4 @@
+import logger from "@/lib/logger";
 import axios from "axios";
 
 class TokenManager {
@@ -36,6 +37,7 @@ class TokenManager {
     if (!this.token) {
       return "";
     }
+    logger.info("Successfully token generated");
     return this.token;
   }
 }

@@ -17,18 +17,38 @@ export default function HomePage() {
   }, []);
 
   if (loading)
-    return <LoadingSkeleton count={chapters.length ? chapters.length : 0} />;
+    return (
+      <div className="p-6">
+        <LoadingSkeleton count={5} />
+      </div>
+    );
 
   return (
     <>
-      <ul className="space-y-2">
-        {chapters &&
-          chapters.map((ch) => (
-            <li key={ch.id}>
-              {ch.name} ({ch.name_arabic})
-            </li>
-          ))}
-      </ul>
+      <section className="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-16 px-6 text-center mb-10">
+        <h1 className="text-4xl font-bold mb-4">Holy Soul</h1>
+        <p className="text-lg max-w-2xl mx-auto">
+          Best learning oriented platform for Holy Quran.
+        </p>
+      </section>
+
+      <section className="px-6">
+        <h2 className="text-2xl font-semibold mb-4">
+          Chapters {chapters ? chapters.length : 0}
+        </h2>
+        <ul className="space-y-3">
+          {chapters &&
+            chapters.map((ch) => (
+              <li
+                key={ch.id}
+                className="p-4 rounded-lg shadow hover:bg-gray-50 transition"
+              >
+                <span className="font-medium">{ch.name}</span>{" "}
+                <span className="text-gray-500">({ch.name_arabic})</span>
+              </li>
+            ))}
+        </ul>
+      </section>
     </>
   );
 }

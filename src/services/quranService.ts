@@ -1,5 +1,6 @@
 import axios from "axios";
 import TokenManager from "./tokenManager";
+import logger from "@/lib/logger";
 
 export function createQuranService(
   clientId: string,
@@ -19,7 +20,7 @@ export function createQuranService(
       const res = await axios.get(`${apiBaseUrl}/chapters`, {
         headers: { "x-auth-token": token, "x-client-id": clientId },
       });
-      console.log("res", res);
+      logger.info("Quran data", res.data);
       return res.data;
     },
   };
