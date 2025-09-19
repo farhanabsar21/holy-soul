@@ -43,7 +43,9 @@ export default function HomePage() {
   };
 
   const surahRanges = () => {
-    return `${startIndex + 1} - ${startIndex + itemsPerPage}`;
+    const endValues =
+      startIndex + itemsPerPage === 120 ? 114 : startIndex + itemsPerPage;
+    return `${startIndex + 1} - ${endValues}`;
   };
 
   // selecting the modal
