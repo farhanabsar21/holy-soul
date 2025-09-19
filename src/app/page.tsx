@@ -4,14 +4,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingSkeleton from "../components/LoadingSkeleton";
+import { Chapter } from "@/@types/components";
+import SurahSummaryCard from "@/components/SurahSummaryCard";
 
 export default function HomePage() {
-  const [chapters, setChapters] = useState<any[]>([]);
+  const [chapters, setChapters] = useState<Chapter[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get("/api/chapters").then((res) => {
-      setChapters(res.data.data);
+      setChapters(res.data.chapters);
       setLoading(false);
     });
   }, []);
@@ -36,18 +38,11 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold mb-4">
           Chapters {chapters ? chapters.length : 0}
         </h2>
-        <ul className="space-y-3">
-          {chapters &&
-            chapters.map((ch) => (
-              <li
-                key={ch.id}
-                className="p-4 rounded-lg shadow hover:bg-gray-50 transition"
-              >
-                <span className="font-medium">{ch.name}</span>{" "}
-                <span className="text-gray-500">({ch.name_arabic})</span>
-              </li>
-            ))}
-        </ul>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {chapters.map((chapter) => (
+            <SurahSummaryCard key={chapter.id} chapter={chapter} />
+          ))}
+        </div>
       </section>
     </>
   );
