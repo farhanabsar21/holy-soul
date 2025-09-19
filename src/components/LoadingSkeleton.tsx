@@ -1,7 +1,4 @@
-// components/LoadingSkeleton.tsx
-interface LoadingSkeletonProps {
-  count?: number; // number of skeleton rows
-}
+import { LoadingSkeletonProps } from "@/@types/components";
 
 export default function LoadingSkeleton({ count = 5 }: LoadingSkeletonProps) {
   return (
